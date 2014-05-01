@@ -40,6 +40,6 @@ EasyDBContext是一个针对BAAS封装的JAVA数据库调用类，使用简单�
 	 DBObject dbObject1=new DBObject("TableName1");
 	 DBObject dbObject2=new DBObject("TableName2");
 	 dbObjectList.add(dbObject1);
-	  dbObjectList.add(dbObject2);
+	 dbObjectList.add(dbObject2);
 	 EasyDBContext.insert(dbObjectList);
 
