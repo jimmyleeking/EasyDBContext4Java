@@ -1,5 +1,6 @@
 package com.handos.dbcontext;
 
+import com.alibaba.fastjson.JSON;
 import com.handos.dbcontext.exception.DBContextInitException;
 
 /**
@@ -7,16 +8,12 @@ import com.handos.dbcontext.exception.DBContextInitException;
  */
 public class TestClass {
     public static void main(String[] args) {
-        System.out.println("start to testing");
-        EasyDBContext.init();
-        Good good=new Good();
-        good.setName("Hello Kitty");
-        good.setAge("1000");
-        try {
-            EasyDBContext.insert(good);
-        } catch (DBContextInitException e) {
-            e.printStackTrace();
-        }
+
+        DBObject obj=new DBObject("");
+        obj.put("good","good");
+        obj.put("fuck","fuck");
+        String jsonString= JSON.toJSONString(obj.getKeyMap());
+        System.out.println(jsonString);
     }
 
 }

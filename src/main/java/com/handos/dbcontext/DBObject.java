@@ -9,6 +9,15 @@ import java.util.Map;
 public class DBObject {
 
     /**
+     *
+     * @param tableName 数据表名
+     */
+    public DBObject(String tableName) {
+        this.tableName=tableName;
+    }
+
+
+    /**
      * 数据表名
      */
     private String tableName;
@@ -23,7 +32,7 @@ public class DBObject {
     /**
      * 键值
      */
-    private Map<String,Object> map=new HashMap<String, Object>();
+    private Map<String,Object> keyMap=new HashMap<String, Object>();
 
     /**
      *
@@ -32,6 +41,14 @@ public class DBObject {
      */
     public void put(String key,Object value)
     {
-        this.map.put(key,value);
+        keyMap.put(key,value);
+    }
+
+    /**
+     * 获取键值
+     * @return
+     */
+    public Map<String, Object> getKeyMap() {
+        return keyMap;
     }
 }

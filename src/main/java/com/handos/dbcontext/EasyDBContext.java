@@ -2,8 +2,9 @@ package com.handos.dbcontext;
 
 import com.alibaba.fastjson.JSON;
 import com.handos.dbcontext.client.EasyClient;
-import com.handos.dbcontext.client.RestApi;
-import com.handos.dbcontext.exception.DBContextInitException;
+import com.handos.dbcontext.client.RestAPI;
+import com.handos.dbcontext.exception.DBContextException;
+import com.handos.dbcontext.util.TextUtil;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -28,7 +29,7 @@ public class EasyDBContext{
     /**
      * 初始化
      */
-    public static void init(){
+    private static void init(){
         easyClient=EasyClient.getInstance();
     }
 
@@ -37,10 +38,10 @@ public class EasyDBContext{
      * @return
      * @throws Exception
      */
-    private static EasyClient getEasyClient() throws DBContextInitException {
+    private static EasyClient getEasyClient(){
         if(easyClient==null)
         {
-            throw new DBContextInitException("Please call init method first");
+            init();
         }
         return easyClient;
     }
@@ -50,19 +51,42 @@ public class EasyDBContext{
      * @param obj
      * @return 返回插入的键值
      */
-    public static String insert(Object obj) throws DBContextInitException {
-
-        EasyClient client=getEasyClient();
+    public static String insert(Object obj) {
         Class<?> objClass=obj.getClass();
-        String className=objClass.getSimpleName();
-        RestApi restApi=client.getRestApi();
-        String operationUri=String.format(restApi.getInsertUri(),className);
+        String tableName=objClass.getSimpleName();
+        String entityString= JSON.toJSONString(obj);
+        return insert(tableName,entityString);
+    }
+
+    /**
+     * 插入DBObject对象
+     * @param obj
+     * @return
+     */
+    public static String insert(DBObject obj) throws DBContextException {
+        String entityString= JSON.toJSONString(obj.getKeyMap());
+        if(TextUtil.isNullOrEmpty(obj.getTableName()))
+        {
+            throw new DBContextException("tableName is null or empty");
+        }
+        return insert(obj.getTableName(),entityString);
+    }
+
+    /**
+     * 插入JSON字符串
+     * @param JSONString
+     * @return
+     */
+    private static String insert(String tableName,String JSONString){
+        EasyClient client=getEasyClient();
+
+        RestAPI restApi=client.getRestApi();
+        String operationUri=String.format(restApi.getInsertUri(),tableName);
         String uri=String.format("%s%s", restApi.getBaseUrl(), operationUri);
         HttpPost httpPost=client.getHttpPost(uri);
         HttpResponse httpResponse=null;
         try {
-            String entityString= JSON.toJSONString(obj);
-            StringEntity input = new StringEntity(entityString);
+            StringEntity input = new StringEntity(JSONString);
             httpPost.setEntity(input);
             httpResponse = client.execute(httpPost);
 
@@ -76,7 +100,6 @@ public class EasyDBContext{
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 

@@ -31,9 +31,9 @@ public class EasyClient {
     private HttpClient httpClient=null;
 
 
-    private RestApi restApi;
+    private RestAPI restApi;
 
-    public RestApi getRestApi() {
+    public RestAPI getRestApi() {
         return restApi;
     }
 
@@ -47,7 +47,7 @@ public class EasyClient {
         if(easyClient==null){
             easyClient=new EasyClient();
             easyClient.httpClient= new DefaultHttpClient();
-            easyClient.restApi=new RestApi();
+            easyClient.restApi=new RestAPI();
             PropertyUtil.loadProperty(easyClient.restApi);
         }
 
