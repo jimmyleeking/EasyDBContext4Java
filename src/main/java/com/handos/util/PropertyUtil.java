@@ -1,6 +1,5 @@
-package com.handos.dbcontext.util;
+package com.handos.util;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.Iterator;
@@ -12,10 +11,7 @@ import java.util.Properties;
 public class PropertyUtil {
 
     private static PropertyUtil propertyUtil;
-    /**
-     * 默认RESTAPI配置文件
-     */
-    private static final String DEFAULT_REST_API_FILE_NAME="restapi.properties";
+
 
 
     /**
@@ -32,13 +28,7 @@ public class PropertyUtil {
         return propertyUtil;
     }
 
-    /**
-     * 读取默认配置文件restapi.property
-     * @param entity
-     */
-    public  static void loadProperty(Object entity){
-        loadProperty(DEFAULT_REST_API_FILE_NAME,entity);
-    }
+
 
     /**
      * 读取配置文件注入到实体

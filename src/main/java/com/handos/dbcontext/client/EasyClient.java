@@ -1,6 +1,6 @@
 package com.handos.dbcontext.client;
 
-import com.handos.dbcontext.util.PropertyUtil;
+import com.handos.util.PropertyUtil;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -14,8 +14,12 @@ import java.io.IOException;
 /**
  * Created by jimmylee on 5/1/14.
  */
-public class EasyClient {
+public class EasyClient implements IClient {
 
+    /**
+     * 默认RESTAPI配置文件
+     */
+    private static final String DEFAULT_REST_API_FILE_NAME="restapi.properties";
     /**
      * AVOS的标示头
      */
@@ -48,7 +52,7 @@ public class EasyClient {
             easyClient=new EasyClient();
             easyClient.httpClient= new DefaultHttpClient();
             easyClient.restApi=new RestAPI();
-            PropertyUtil.loadProperty(easyClient.restApi);
+            PropertyUtil.loadProperty(DEFAULT_REST_API_FILE_NAME,easyClient.restApi);
         }
 
 

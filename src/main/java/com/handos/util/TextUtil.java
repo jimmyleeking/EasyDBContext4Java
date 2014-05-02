@@ -1,4 +1,4 @@
-package com.handos.dbcontext.util;
+package com.handos.util;
 
 /**
  * Created by jimmylee on 5/1/14.

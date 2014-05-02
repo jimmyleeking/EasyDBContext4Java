@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/EasyCloudLog/EasyCloudLog.iml" filepath="$PROJECT_DIR$/EasyCloudLog/EasyCloudLog.iml" />
       <module fileurl="file://$PROJECT_DIR$/easydbcontext.iml" filepath="$PROJECT_DIR$/easydbcontext.iml" />
     </modules>
   </component>
