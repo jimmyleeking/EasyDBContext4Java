@@ -28,6 +28,9 @@ public class RestApi {
         return baseUrl;
     }
 
+
+
+
     public void setBaseUrl(String baseUrl) {
         this.baseUrl = baseUrl;
     }

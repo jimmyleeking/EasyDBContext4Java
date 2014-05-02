@@ -35,9 +35,9 @@ public class EasyClient implements IClient {
     private HttpClient httpClient=null;
 
 
-    private RestAPI restApi;
+    private RestApi restApi;
 
-    public RestAPI getRestApi() {
+    public RestApi getRestApi() {
         return restApi;
     }
 
@@ -51,7 +51,7 @@ public class EasyClient implements IClient {
         if(easyClient==null){
             easyClient=new EasyClient();
             easyClient.httpClient= new DefaultHttpClient();
-            easyClient.restApi=new RestAPI();
+            easyClient.restApi=new RestApi();
             PropertyUtil.loadProperty(DEFAULT_REST_API_FILE_NAME,easyClient.restApi);
         }
 

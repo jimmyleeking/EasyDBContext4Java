@@ -3,7 +3,7 @@ package com.handos.dbcontext;
 import com.alibaba.fastjson.JSON;
 import com.handos.IDBContext;
 import com.handos.dbcontext.client.EasyClient;
-import com.handos.dbcontext.client.RestAPI;
+import com.handos.dbcontext.client.RestApi;
 import com.handos.dbcontext.exception.DBContextException;
 import com.handos.util.TextUtil;
 import org.apache.http.HttpResponse;
@@ -70,7 +70,7 @@ class DBContextImpl implements IDBContext {
     private  String insert(String tableName,String JSONString){
         EasyClient client=getEasyClient();
 
-        RestAPI restApi=client.getRestApi();
+        RestApi restApi=client.getRestApi();
         String operationUri=String.format(restApi.getInsertUri(),tableName);
         String uri=String.format("%s%s", restApi.getBaseUrl(), operationUri);
         HttpPost httpPost=client.getHttpPost(uri);

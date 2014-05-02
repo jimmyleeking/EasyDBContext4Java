@@ -25,6 +25,5 @@ public interface ILog {
 
     void warn(String tag, String content, Throwable tr);
 
-    void warn(String tag, Throwable tr);
 
 }
