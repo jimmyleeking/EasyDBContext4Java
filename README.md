@@ -1,5 +1,5 @@
 #EasyDBContext Document
-EasyDBContext是一个针对BAAS封装的JAVA数据库调用类，使用简单，基本零成本上手。
+EasyDBContext是一个针对BAAS封装的SDK,集成了数据调用的SDK和一些远程调试(EasyCloudLog)。
 ##Getting Start
 ###配置restapi.properties
 请先根据你的应用做好相关配置
@@ -14,8 +14,8 @@ EasyDBContext是一个针对BAAS封装的JAVA数据库调用类，使用简单�
 ##Example
 
 ##初始化
-	//初始化EasyDBContext，仅需在系统初始化的时候调用.
-	EasyDBContext.init();
+无需初始化，直接调用即可。
+	
 ##新增数据
 ###1.插入单条数据
 #####以自定义实体类的方式
@@ -42,4 +42,12 @@ EasyDBContext是一个针对BAAS封装的JAVA数据库调用类，使用简单�
 	 dbObjectList.add(dbObject1);
 	 dbObjectList.add(dbObject2);
 	 EasyDBContext.insert(dbObjectList);
+
+
+##远程调试
+
+	//支持调试级别: Debug,Error,Verbose,warn,Info
+	EasyCloudLog.d("Your Tag","Meesage");
+	EasyCloudLog.d("Your Tag","Message",myException);
+	
 
